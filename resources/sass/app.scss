@@ -11,3 +11,127 @@ $fa-font-path: "../webfonts";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+/* Color Template  */
+
+.color-primary {
+    color: $color-primary;
+}
+
+.color-primary-bg {
+    background: $color-primary;
+}
+
+.color-second {
+    color: $color-second;
+}
+
+.color-second-bg {
+    background: $color-second;
+}
+
+.color-yellow {
+    color: $color-yellow;
+}
+
+.color-yellow-bg {
+    background: $color-yellow;
+}
+
+
+/*  global classes  */
+
+button,
+button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+/*   Special Price Section Template */
+
+#special-price {
+    .grid .grid-item {
+        margin-right: 1.2rem;
+        margin-top: 1rem;
+    }
+}
+
+
+/*  top sale template   */
+
+#top-sale {
+    .owl-carousel .item .product a {
+        overflow: hidden;
+    }
+    .owl-carousel .item .product img {
+        transition: transform .5s ease;
+    }
+    .owl-carousel .item .product img:hover {
+        transform: scale(1.1);
+    }
+    .owl-carousel .owl-nav button {
+        position: absolute;
+        top: 30%;
+        outline: none;
+    }
+    .owl-carousel .owl-nav button.owl-prev {
+        left: 0;
+    }
+    .owl-carousel .owl-nav button.owl-prev span,
+    .owl-carousel .owl-nav button.owl-next span {
+        font-size: 35px;
+        color: $color-primary;
+        padding: 0 1rem;
+    }
+    .owl-carousel .owl-nav button.owl-prev span {
+        margin-left: -4rem;
+    }
+    .owl-carousel .owl-nav button.owl-next {
+        right: 0;
+    }
+    .owl-carousel .owl-nav button.owl-next span {
+        margin-right: -4rem;
+    }
+}
+
+
+/* typography classes */
+
+.font-baloo {
+    font-family: $font-baloo;
+}
+
+.font-rale {
+    font-family: $font-raleway;
+}
+
+.font-rubik {
+    font-family: $font-rubik;
+}
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.font-size-14 {
+    font-size: 14px;
+}
+
+.font-size-16 {
+    font-size: 16px;
+}
+
+.font-size-20 {
+    font-size: 20px;
+}
+
+$font-baloo: "Baloo Thambi 2",
+cursive;
+$font-raleway: "Raleway",
+cursive;
+$font-rubik: "Rubik",
+cursive;
+$color-primary: #003859;
+$color-second: #00A5C4;
+$color-yellow: #FFD289;
