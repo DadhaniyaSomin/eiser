@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use file;
 use App\Models\category;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use file;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Add_Product_Mail;
 
 class ProductController extends Controller
 {
@@ -88,11 +90,13 @@ class ProductController extends Controller
         $products->user_id = Auth::user()->id;
         // dd($products);
 
+
         $save = $products->save();
-        $products1 =  $request->category;
-        $products->category()->attach($products1);
+       
+         Mail::to('somindadhaniya111@gmail.com')->send(new Add_Product_Mail());
+      
         if ($save) {
-            return redirect()->route('products.index');
+            return redirect()->route('products.index')->with("email","Email has been sent succesfully");
         }
     }
 

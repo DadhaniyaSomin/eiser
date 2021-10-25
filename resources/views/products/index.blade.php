@@ -199,6 +199,13 @@
 
         </div>
     </div>
+
+    @if(session()->has('email'))
+    <div class="alert alert-success">
+        {{session()->get('email')}}             
+    </div>
+    @endif()
+
     <div class="container-fluid">
 
         <table class="table table-striped table-hover data-table">
@@ -247,7 +254,7 @@
                         {
                             data: "image",
                             "render": function(data, type, row) {
-                                return '<img src="image/' + data + '" width="100px" />';
+                                return '<img src="/image/' + data + '" width="100px" />';
                             },
                             name: 'image'
                         },
@@ -353,7 +360,7 @@
                     $.ajax({
                         url: "{{ url('admin/products') }}" + '/' + id,
                         data: {
-
+                                    
                             name: name,
                             description: description,
                             price: price,
@@ -568,6 +575,10 @@
                         $('#price_error').hide();
                     }
                 }
+
+                setTimeout(() => {
+                    $('.alert-success').hide();
+                }, 3000);
             });
         </script>
     @endpush
