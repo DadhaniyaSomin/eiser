@@ -29,25 +29,20 @@ class CategoryController extends Controller
             return DataTables::of($data)
                    ->addIndexColumn()
                    ->addColumn('action', function ($row) {
-                       if (Auth::user()->role_id == 2) {
-                           if (Auth::user()->id == $row->user_id) {
-                               $btn = '<div class="form-group">
-                            <button type="button" class="btn btn-success category_edit" data-toggle="modal" data-target="#update_modal" data-id="' . $row->id . '" ><i class="fa fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger category_delete" data-toggle="modal" data-target="#modalConfirmDelete" data-id="' . $row->id . '" ><i class="fa fa-trash"></i></button></div>';
-                               return $btn;
-                           }
-                       } elseif (Auth::user()->role_id == 1) {
+                      
                            $btn = '<div class="form-group">
                         <button type="button" class="btn btn-success category_edit" data-toggle="modal" data-target="#update_modal" data-id="' . $row->id . '" ><i class="fa fa-edit"></i></button>
                             <button type="button" class="btn btn-danger category_delete" data-toggle="modal" data-target="#modalConfirmDelete" data-id="' . $row->id . '"><i class="fa fa-trash"></i></button></div>';
                            return $btn;
-                       }
+                       
                    })
                 ->rawColumns(['action'])
                 ->make(true);
         }
         return view('categories.index', compact('category'));
-    }
+    
+    } 
+
 
     /**
      * Show the form for creating a new resource.
@@ -82,7 +77,7 @@ class CategoryController extends Controller
         //
         $category = new Category();
         $category->c_name = $request->c_name;
-        $category->created_by = Auth::user()->role_id;
+    
         //dd($category);
         $save = $category->save();
         if ($save) {
@@ -144,8 +139,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //   
-        $category1 = category::find($id);
-        $category1->Products()->detach();
         $category = category::where('id', $id)->delete();
         return redirect()->route('categories.index');
     }

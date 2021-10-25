@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
 
     <div tabindex="-1" class="modal pmd-modal fade" id="form-dialog" style="display: none;" aria-hidden="true">
@@ -116,9 +116,7 @@
                 <tr>
                     <th>ID</th>
                     <th>name</th>
-
-                    <th>icon</th>
-
+                    <th>action</th>
                 </tr>
             </thead>
             <tbody>
@@ -182,14 +180,16 @@
             //delete data from database
             $(document).on('click', '.category_delete', function(e) {
                 var id = $(this).data('id');
-                console.log(id);
+                // console.log(id);
 
                 $('#delete').click(function(e) {
+                  
                     e.preventDefault();
                     $.ajax({
-                        url: "{{ url('categories') }}" + '/' + id,
+                        
+                        url: "{{ url('admin/categories') }}" + '/' + id,
                         type: 'POST',
-                        dataType: 'JSON',
+                        //dataType: 'JSON',
                         data: {
                             'id': id,
                             _token: "{{ csrf_token() }}",
@@ -210,7 +210,7 @@
                     var id = $(this).data('id');
                     console.log(id);
                     $.ajax({
-                        url: "{{ url('categories') }}" + '/' + id + "/edit",
+                        url: "{{ url('admin/categories') }}" + '/' + id + "/edit",
                         type: 'get',
                         dataType: 'json',
                         data: {
@@ -234,7 +234,7 @@
                     console.log(name);
                     //var formData = new FormData(this);
                     $.ajax({
-                        url: "{{ url('categories') }}" + '/' + id,
+                        url: "{{ url('admin/categories') }}" + '/' + id,
                         data: {
                             c_name: c_name,
                             _token: "{{ csrf_token() }}",

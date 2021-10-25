@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
 
 
@@ -297,7 +297,7 @@
                     $('#delete').click(function(e) {
                         e.preventDefault();
                         $.ajax({
-                            url: "{{ url('products') }}" + '/' + id,
+                            url: "{{ url('admin/products') }}" + '/' + id,
                             type: 'POST',
                             dataType: 'JSON',
                             data: {
@@ -320,7 +320,7 @@
                     var id = $(this).data('id');
                     console.log(id);
                     $.ajax({
-                        url: "{{ url('products') }}" + '/' + id + "/edit",
+                        url: "{{ url('admin/products') }}" + '/' + id + "/edit",
                         type: 'get',
                         dataType: 'json',
                         data: {
@@ -341,12 +341,6 @@
                 //update the data
                 $(document).on('click', '.update', (function(e) {
                     e.preventDefault();
-                    // var name_error, description_error, price_error, category_error = true;
-                    // //var image_error=false;
-                    // nameCheck();
-                    // priceCheak();
-
-                    // 
 
                     var id = $('#id').val();
                     var name = $('#name').val();
@@ -354,11 +348,12 @@
                     var price = $('#price').val();
                     var category = $('#category').val();
 
-                    console.log(name, description, price, category, id);
+                   console.log(name);
                     //var formData = new FormData(this);
                     $.ajax({
-                        url: "{{ url('products') }}" + '/' + id,
+                        url: "{{ url('admin/products') }}" + '/' + id,
                         data: {
+
                             name: name,
                             description: description,
                             price: price,
@@ -520,6 +515,7 @@
                         $('#ename_error').hide();
                     }
                 };
+                
                 //this fucntion get the value from the add product modal and validete 
                 function epriceCheak() {
                     var price_val = $('#price').val();

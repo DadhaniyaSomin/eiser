@@ -26,23 +26,18 @@ class ProductController extends Controller
         $products = [];
         $category = category::select('id', 'c_name')->get();
         if ($request->ajax()) {
+          
+            
             $data = Products::get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    if (Auth::user()->role_id == 2) {
-                        if (Auth::user()->id == $row->user_id) {
-                            $btn = '<div class="form-group">
-                            <button type="button" class="btn btn-success product_edit" data-toggle="modal" data-target="#update_modal" data-id="' . $row->id . '" ><i class="fa fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger product_delete" data-toggle="modal" data-target="#modalConfirmDelete" data-id="' . $row->id . '" ><i class="fa fa-trash"></i></button></div>';
-                            return $btn;
-                        }
-                    } elseif (Auth::user()->role_id == 1) {
+                  
                         $btn = '<div class="form-group">
                         <button type="button" class="btn btn-success product_edit" data-toggle="modal" data-target="#update_modal" data-id="' . $row->id . '" ><i class="fa fa-edit"></i></button>
                             <button type="button" class="btn btn-danger product_delete" data-toggle="modal" data-target="#modalConfirmDelete" data-id="' . $row->id . '"><i class="fa fa-trash"></i></button></div>';
                         return $btn;
-                    }
+                    
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -89,7 +84,7 @@ class ProductController extends Controller
         $products->price = $request->price;
         $products->image = isset($filename) ? $filename : "";
 
-        $products->created_by = Auth::user()->role_id;
+        
         $products->user_id = Auth::user()->id;
         // dd($products);
 
@@ -122,22 +117,7 @@ class ProductController extends Controller
      */
     public function edit(Request $request,$id)
     {
-        // $data = products::with('category')->whereId($id)->first();
-        // if (isset($data)) {
-        //     if (Auth::user()->id == $data->user_id || Auth::user()->role_id == 1) {
-        //         $category = category::all();
-
-        //         // dd($category,$products1);
-        //         //dd($category);
-;
-        //         $products = Products::find($id);
-        //         return view('products.edit', compact('products', 'category'));
-        //     } else {
-        //         return redirect()->route('products.index');
-        //     }
-        // } else {
-        //     return redirect()->route('products.index');
-        // }
+    
               
         $data = products::where('id',$id)->first();
         return response()->json($data);
@@ -160,10 +140,7 @@ class ProductController extends Controller
         $products->name = $request->name;
         $products->description = $request->description;
         $products->price = $request->price;
-        // $products->image = isset($name) ? $name : "";
-        //$products->category =  implode(',', $request->category);
-        // $products->user_role = $request->user_role;
-        //   dd($products);
+ 
         $products->update();
 
         $products1 =  $request->category;
