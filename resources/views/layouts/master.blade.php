@@ -241,7 +241,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <p>category</p>
                                     </a>
                                 </li>
-                       
+                            
+                                <li class="nav-item text-center">
+                                    <form action="{{ route('logout') }}" class="nav-link active" method="POST">
+                                        @csrf
+                                        {{-- <i class="far fa-circle nav-icon"></i> --}}
+                                        <button class="btn btn-success" type="submit">logout</button>
+                                    </form>
+                                </li>
 
                                
                             </ul>

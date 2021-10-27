@@ -18,7 +18,7 @@ class CreateAdmin extends Seeder
         //
            DB::table('users')->insert([
             'name' => "admin",
-            'email' => "somindadhaniya111@gmail.com",
+            'email' => "sagar@elsner.in",
             'password' => Hash::make('password'),
             'is_admin' => '1',
            ]);
