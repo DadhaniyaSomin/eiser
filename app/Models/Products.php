@@ -18,6 +18,8 @@ class Products extends Model
         'name',
         'description',
         'price',
+        'user_id',
+        'image',
     ];
 
     public function category()
@@ -27,6 +29,12 @@ class Products extends Model
     public function two()
     {
         return $this->belongs(category::class);
+    }
+
+    public static function getAllproducts()
+    {
+        $result = DB::table("products")->select('id', 'name', 'description', 'price')->get()->toArray();
+        return $result;
     }
 
 }

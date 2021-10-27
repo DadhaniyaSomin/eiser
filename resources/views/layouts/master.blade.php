@@ -4,38 +4,39 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-    
-        <title>{{ config('app.name', 'Laravel') }}</title>
-    
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-    
-    
-        <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js" defer>
-        </script>
-        <link href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" rel="stylesheet">
-        <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
-    </head>
-    
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js" defer>
+    </script>
+    <link href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+</head>
+
 <body class="hold-transition sidebar-mini">
 
     <div class="wrapper">
@@ -228,19 +229,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="nav-item menu-open">
 
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
+                                <li class="nav-item text-center">
                                     <a href="{{ route('products.index') }}" class="nav-link active">
                                         {{-- <i class="far fa-circle nav-icon"></i> --}}
                                         <p>products</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item text-center">
                                     <a href="{{ route('categories.index') }}" class="nav-link active">
                                         {{-- <i class="far fa-circle nav-icon"></i> --}}
                                         <p>category</p>
                                     </a>
                                 </li>
-                                
+                       
+
+                               
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -266,22 +269,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-                        crossorigin="anonymous"></script>
-                <script type="text/javascript" src="cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
-        
-        
-                <main class="py-4">
-                    @yield('content')
-                </main>
-            </div>
-            @stack('scripts')
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
+                                                crossorigin="anonymous"></script>
+                        <script type="text/javascript" src="cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+
+
+                        <main class="py-4">
+                            @yield('content')
+                        </main>
+                    </div>
+                    @stack('scripts')
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </div>
-            
-          
-  
+    </div>
+
+
+
 </body>
 
 </html>

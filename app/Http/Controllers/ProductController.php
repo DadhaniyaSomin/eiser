@@ -6,11 +6,14 @@ use file;
 use App\Models\category;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use App\Exports\ProductExport;
+use App\Imports\ProductImport;
+use App\Mail\Add_Product_Mail;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\Add_Product_Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -84,16 +87,15 @@ class ProductController extends Controller
         $products->name = $request->name;
         $products->description = $request->des;
         $products->price = $request->price;
-        $products->image = isset($filename) ? $filename : "";
-
+        // $products->image = isset($filename) ? $filename : "";
+        $products->image = "";
         
         $products->user_id = Auth::user()->id;
-        // dd($products);
 
 
         $save = $products->save();
        
-         Mail::to('somindadhaniya111@gmail.com')->send(new Add_Product_Mail());
+         Mail::to(Auth::user()->email)->send(new Add_Product_Mail($products));
       
         if ($save) {
             return redirect()->route('products.index')->with("email","Email has been sent succesfully");
@@ -164,5 +166,17 @@ class ProductController extends Controller
 
         Products::whereId($id)->delete();
         return  redirect()->route('products.index');
+    }
+
+    public function import() 
+    {
+        Excel::import(new ProductImport ,request()->file('file'));     
+       
+        return back();
+    }
+
+    public function export()
+    {
+        return Excel::download(new ProductExport, 'Book1.xlsx');
     }
 }

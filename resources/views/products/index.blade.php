@@ -193,18 +193,29 @@
         <div class="row justify-content-between p-3 mb-4">
             <div class="col-5 ">
                 <button data-target="#form-dialog" data-toggle="modal"
-                    class="btn pmd-ripple-effect btn-primary pmd-btn-raised" type="button">ADD producst</button>
+                    class="btn pmd-ripple-effect btn-primary pmd-btn-raised mb-1" type="button">Add products</button>
+                    <form action={{ route('import') }} class="import " method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <button class="btn btn-warning mb-1"  > Import Products</button>
+                    <input name="file" type="file">
+                    </form>
+                    <form action={{ route('export') }} class="import " method="GET"
+                    enctype="multipart/form-data">
+                  
+                    <button class="btn btn-warning mb-1"  > export Products </button>
+                
+                    
+                </form>
             </div>
-
-
         </div>
     </div>
 
-    @if(session()->has('email'))
+
     <div class="alert alert-success">
-        {{session()->get('email')}}             
+        {{ session()->get('email') }}
     </div>
-    @endif()
+
 
     <div class="container-fluid">
 
@@ -266,6 +277,8 @@
                     ]
                 });
 
+                $('.alert-success').hide();
+
                 //insert data into database 
                 $(document).on('click', '.submit', (function(e) {
                     e.preventDefault();
@@ -291,6 +304,11 @@
                             $('#add_product').trigger('reset');
                             table.draw();
 
+                            if (data.email) {
+                                $('.alert-success').show();
+                                $('.alert-success').html(
+                                    "Email has been sent to your address successfully");
+                            }
                         },
                     });
 
@@ -355,12 +373,12 @@
                     var price = $('#price').val();
                     var category = $('#category').val();
 
-                   console.log(name);
+                    console.log(name);
                     //var formData = new FormData(this);
                     $.ajax({
                         url: "{{ url('admin/products') }}" + '/' + id,
                         data: {
-                                    
+
                             name: name,
                             description: description,
                             price: price,
@@ -437,7 +455,7 @@
                     }
 
                 });
-                 
+
                 $('#image').on('change', function() {
                     var fileInput = this.files[0];
                     console.log(fileInput);
@@ -522,7 +540,7 @@
                         $('#ename_error').hide();
                     }
                 };
-                
+
                 //this fucntion get the value from the add product modal and validete 
                 function epriceCheak() {
                     var price_val = $('#price').val();

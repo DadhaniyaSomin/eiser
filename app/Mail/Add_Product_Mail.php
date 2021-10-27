@@ -10,15 +10,16 @@ use Illuminate\Queue\SerializesModels;
 class Add_Product_Mail extends Mailable
 {
     use Queueable, SerializesModels;
-
+     public $products;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($products)
     {
         //
+        $this->products = $products;
     }
 
     /**
@@ -28,6 +29,7 @@ class Add_Product_Mail extends Mailable
      */
     public function build()
     {
+
         return $this->from('somin.elsner@example.com', 'Example')->view('Mail.add_product');
     }
 }

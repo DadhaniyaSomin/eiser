@@ -29,6 +29,8 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function()
     Route::get('home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home');
     Route::resource('products', App\Http\Controllers\ProductController::class);
     Route::resource('categories', App\Http\Controllers\CategoryController::class)->middleware('auth');
+    Route::post('import', [App\Http\Controllers\ProductController::class, 'import'])->name('import');
+    Route::get('export', [App\Http\Controllers\ProductController::class, 'export'])->name('export');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
