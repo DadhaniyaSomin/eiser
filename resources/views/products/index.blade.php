@@ -190,7 +190,7 @@
     <!--Modal: modalConfirmDelete-->
 
     <div class="container-fluid mb-3 ">
-        <div class="row justify-content-between p-3 mb-4">
+        <div class="row justify-content-start p-3 mb-4">
             <div class="col-5 ">
                 <button data-target="#form-dialog" data-toggle="modal"
                     class="btn pmd-ripple-effect btn-primary pmd-btn-raised mb-1" type="button">Add products</button>
@@ -208,9 +208,19 @@
                     
                 </form>
             </div>
+             <div class="container-fluid md-3 justify-content-end">
+                <form >
+                    <label for="birthday"></label>
+                    <input type="date" id="start" name="start_data">
+                    <label for="birthday"></label>
+                    <input type="date" id="end" name="end_data">
+                    <button id="dateSubmit" type="submit" >Get Data</button>
+             </form>
+            </div>
         </div>
     </div>
 
+  
 
     <div class="alert alert-success">
         {{ session()->get('email') }}
@@ -239,11 +249,10 @@
     @push('scripts')
         <script type="text/javascript">
             $(document).ready(function() {
-
                 var table = $('.data-table').DataTable({
                     processing: true,
                     serverSide: true,
-
+                     
                     ajax: "{{ route('products.index') }}",
                     columns: [{
                             data: 'id',
@@ -276,6 +285,7 @@
                         },
                     ]
                 });
+            }
 
                 $('.alert-success').hide();
 
@@ -338,6 +348,26 @@
 
                     });
                 });
+                
+                $('#dateSubmit').click(function(e){
+                    e.preventDefault();
+                    var start_date = $("#start").val(); 
+                    var end_date = $("#end").val();
+                    console.log(start_date, end_date);
+                  
+                    $.ajax({
+                          url : "{{ url('admin/products') }}"+'/' + start_date ,
+                          type : "GET",
+                          data : {
+                              'start_date' : start_date,
+                              'end_date' : end_date,
+                          },
+                          success : function(data) {
+
+                          },
+                    });
+                  
+                });
 
                 //edit image from the database
                 $(document).on('click', '.product_edit', function(e) {
@@ -363,6 +393,7 @@
 
                 });
 
+              
                 //update the data
                 $(document).on('click', '.update', (function(e) {
                     e.preventDefault();
@@ -455,6 +486,8 @@
                     }
 
                 });
+
+               
 
                 $('#image').on('change', function() {
                     var fileInput = this.files[0];

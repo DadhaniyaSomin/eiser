@@ -26,13 +26,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $products = [];
         $category = category::select('id', 'c_name')->get();
         if ($request->ajax()) {
-          
-            
             $data = Products::get();
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -113,6 +111,7 @@ class ProductController extends Controller
     {
         // $category = category::find($id)->products;
         // return view('products.index', compact('category'));
+    
     }
 
     /**
