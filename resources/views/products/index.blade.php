@@ -202,21 +202,10 @@
                     </form>
                     <form action={{ route('export') }} class="import " method="GET"
                     enctype="multipart/form-data">
-                  
                     <button class="btn btn-warning mb-1"  > export Products </button>
-                
-                    
                 </form>
             </div>
-             <div class="container-fluid md-3 justify-content-end">
-                <form >
-                    <label for="birthday"></label>
-                    <input type="date" id="start" name="start_data">
-                    <label for="birthday"></label>
-                    <input type="date" id="end" name="end_data">
-                    <button id="dateSubmit" type="submit" >Get Data</button>
-             </form>
-            </div>
+         
         </div>
     </div>
 
@@ -237,7 +226,7 @@
                     <th>Description</th>
                     <th>Price</th>
                     <th>image</th>
-                    <th> Actions</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -248,12 +237,13 @@
 
     @push('scripts')
         <script type="text/javascript">
+
             $(document).ready(function() {
                 var table = $('.data-table').DataTable({
                     processing: true,
                     serverSide: true,
                      
-                    ajax: "{{ route('products.index') }}",
+                    ajax: "{{route('products.index')}}",
                     columns: [{
                             data: 'id',
                             name: 'id',
@@ -274,7 +264,7 @@
                         {
                             data: "image",
                             "render": function(data, type, row) {
-                                return '<img src="/image/' + data + '" width="100px" />';
+                                return '<img src="/image/'+data + '" width="100px" />';
                             },
                             name: 'image'
                         },
@@ -286,6 +276,7 @@
                     ]
                 });
             }
+            
 
                 $('.alert-success').hide();
 
@@ -349,25 +340,25 @@
                     });
                 });
                 
-                $('#dateSubmit').click(function(e){
-                    e.preventDefault();
-                    var start_date = $("#start").val(); 
-                    var end_date = $("#end").val();
-                    console.log(start_date, end_date);
+                // $('#dateSubmit').click(function(e){
+                //     e.preventDefault();
+                //     var start_date = $("#start").val(); 
+                //     var end_date = $("#end").val();
+                //     console.log(start_date, end_date);
                   
-                    $.ajax({
-                          url : "{{ url('admin/products') }}"+'/' + start_date ,
-                          type : "GET",
-                          data : {
-                              'start_date' : start_date,
-                              'end_date' : end_date,
-                          },
-                          success : function(data) {
+                //     $.ajax({
+                //           url : "{{ url('admin/products') }}"+'/' + start_date ,
+                //           type : "GET",
+                //           data : {
+                //               'start_date' : start_date,
+                //               'end_date' : end_date,
+                //           },
+                //           success : function(data) {
 
-                          },
-                    });
+                //           },
+                //     });
                   
-                });
+                // });
 
                 //edit image from the database
                 $(document).on('click', '.product_edit', function(e) {

@@ -1,5 +1,5 @@
 <?php
-
+use Auth\VerificationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -23,7 +23,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function()
+
+Route::group(['prefix' => 'admin',  'middleware' => 'is_admin', 'auth' ], function()
 {
     //All the routes that belongs to the group goes here
     Route::get('home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home');
