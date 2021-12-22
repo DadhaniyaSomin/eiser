@@ -18,9 +18,11 @@ class CreateAdmin extends Seeder
         //
            DB::table('users')->insert([
             'name' => "admin",
-            'email' => "sagar@elsner.in",
+            'email' => "sagar@elsner.in ",
             'password' => Hash::make('password'),
             'is_admin' => '1',
            ]);
+
+        //    php artisan db:seed --class=CreateAdmin
     }
 }

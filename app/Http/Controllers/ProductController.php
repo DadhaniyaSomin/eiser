@@ -19,7 +19,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth' ]);
+        $this->middleware(['auth']);
     }
     /**
      * Display a listing of the resource.
@@ -32,6 +32,7 @@ class ProductController extends Controller
         $category = category::select('id', 'c_name')->get();
         if ($request->ajax()) {
             $data = Products::get();
+          
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {

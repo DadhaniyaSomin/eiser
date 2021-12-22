@@ -146,9 +146,6 @@
                         </div>
                     </form>
                 </div>
-
-
-
                 </form>
             </div>
         </div>
@@ -209,16 +206,10 @@
         </div>
     </div>
 
-  
-
-    <div class="alert alert-success">
-        {{ session()->get('email') }}
-    </div>
-
 
     <div class="container-fluid">
 
-        <table class="table table-striped table-hover data-table">
+        <table id="myTable" class="table table-striped table-hover data-table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -236,13 +227,11 @@
     @endsection
 
     @push('scripts')
-        <script type="text/javascript">
-
+        <script>
             $(document).ready(function() {
-                var table = $('.data-table').DataTable({
+                $('#myTable').DataTable({
                     processing: true,
-                    serverSide: true,
-                     
+                    serverSide: true,  
                     ajax: "{{route('products.index')}}",
                     columns: [{
                             data: 'id',
@@ -275,7 +264,7 @@
                         },
                     ]
                 });
-            }
+            
             
 
                 $('.alert-success').hide();
@@ -305,11 +294,11 @@
                             $('#add_product').trigger('reset');
                             table.draw();
 
-                            if (data.email) {
-                                $('.alert-success').show();
-                                $('.alert-success').html(
-                                    "Email has been sent to your address successfully");
-                            }
+                            // if (data.email) {
+                            //     $('.alert-success').show();
+                            //     $('.alert-success').html(
+                            //         "Email has been sent to your address successfully");
+                            // // }
                         },
                     });
 

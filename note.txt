@@ -1,0 +1,10 @@
+User Events : to create new user Email notifications
+
+1) make events
+2) make listener
+3 coupele them in Providers
+4 ) make mail 
+4} then change in contruction ($user) 
+5) chage in lister : Mail to get user  from $events->user 
+6) chaneg in mailabele : 
+7) done
