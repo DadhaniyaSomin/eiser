@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -46,6 +49,13 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
+        
+        $time = Carbon::now();
+        $id = $request->email;
+        // dd($id);
+        User::where('email', $id)
+      ->update(['last_login_at' => $time]);
+
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->is_admin == 1) {
