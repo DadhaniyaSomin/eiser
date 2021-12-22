@@ -32,6 +32,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin', 'auth' ], functi
     Route::resource('categories', App\Http\Controllers\CategoryController::class)->middleware('auth');
     Route::post('import', [App\Http\Controllers\ProductController::class, 'import'])->name('import');
     Route::get('export', [App\Http\Controllers\ProductController::class, 'export'])->name('export');
+    Route::get('deviceInfo', [App\Http\Controllers\ProductController::class, 'getusersysteminfo'])->name('getusersysteminfo');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

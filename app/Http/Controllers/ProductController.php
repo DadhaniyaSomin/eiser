@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Helper\UserSystemInfoHelper;
+
+
 
 class ProductController extends Controller
 {
@@ -179,4 +182,9 @@ class ProductController extends Controller
     {
         return Excel::download(new ProductExport, 'Book1.xlsx');
     }
+
+    
+
+  
+
 }

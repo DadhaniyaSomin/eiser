@@ -38,7 +38,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 <body class="hold-transition sidebar-mini">
-
+   
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -54,6 +54,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <p class="nav-link"> Yout IP : <?php echo get_ip() ?></p>
                 </li>
             </ul>
 

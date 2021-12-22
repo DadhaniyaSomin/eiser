@@ -31,7 +31,13 @@
                                            <p>User Name : {{$user->name}}</p>
                                            <p>User Email : {{$user->email}}</p>
                                            {{-- <p>Product Price : {{$products->price}}</p> --}}
-                                         </tbody>  
+                                           <p>User IP : {{get_ip()}}</p>
+                                           <p>User Device : {{get_device()}}</p>
+                                           <p>User OS  : {{get_os()}}</p>
+                                           <p>User get_browsers : {{get_browsers()}}</p>
+                                         </tbody>
+                                         
+                                         
                                     </table>
                                 </td>
                             </tr>
